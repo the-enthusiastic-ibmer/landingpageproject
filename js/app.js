@@ -13,9 +13,9 @@ let navUl = document.getElementById('navbar__list');
 const sectionObj = {};
 
 
-/* * * * * * * * * * *
+/* * * * * * * * * * * * * * * * * * * * * *
 // Functions go here
-/* * * * * * * * * **/
+/* * * * * * * * * * * * * * * * * * * * * */
 function pageScroll(){
   let pageElement = event.target.innerText;
   //document.getElementById(pageElement).scrollIntoView();
@@ -33,15 +33,7 @@ function pageScroll(){
       //sectionObj[pageElement].element.classList.remove('activeclass');
       console.log("Off:"+pagesection);
     }
-  } //sectionObj[pageElement].element.classList.toggle('activeclass');
-  
-  //for (let pageSection in sectionObj){
-  //  if (pageElement !== pageSection){
-  //    sectionObj[pageElement].element.classList.remove('activeclass');
-  //    console.log("Inactive"+pageElement, pageSection);
-  //  }
-  //} 
-  //document.getElementById(pageElement).classList.toggle('activeclass');
+  } 
 }
 
 function createUlItem(liName){
