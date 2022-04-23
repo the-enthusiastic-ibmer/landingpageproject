@@ -48,24 +48,8 @@ function createUlItem(liName){
   // Create a 'li' Element
   let liItem = document.createElement('li');
   liItem.innerHTML = liName;
-  
+  // Add event listerner and scroll to the section
   liItem.addEventListener('click', pageScroll);
-  /*liItem.addEventListener('click', (event)=>{
-    let pageElement = event.target.innerText;
-    for (var activeSection in sectionObj){
-      if (activeSection === pageElement){ 
-        //document.getElementById(pageElement).scrollIntoView();
-        // Access the page section element and scrollIntoView method by calling the sectionObj using bracket notation.
-        sectionObj[pageElement].element.scrollIntoView();
-        // To make the page active, add the 'activeclass' to the same element.
-        
-        sectionObj[pageElement].element.classList.add('activeclass');        
-      } else {
-        // Remove the 'activeclass' class from all the other elements except the one within view.
-        sectionObj[activeSection].element.classList.remove('activeclass');
-      }
-    }
-  });*/
   return liItem;
 }
 
@@ -83,15 +67,12 @@ for (var i = 0;i<sections.length;i++){
   navUl.appendChild(createUlItem(liItem));
 }
 
-//console.log(navObj);
-/*for (const [key, val] of Object.entries(navObj)){
-  console.log(`${key},${val}`);
-}*/
-
 // Create a listner for the scrollball and call the pageScroll function again
+//window.addEventListener('scroll', (event)=>{
 window.addEventListener('scroll', (event)=>{
+
   // Prevent Default event
-  event.preventDefault()
+  //event.preventDefault()
   // Iterate through sectionObj Obects obtaining getBoundingClientRect object
   for (var scrollSection in sectionObj){
     scrollElementRect = sectionObj[scrollSection].element.getBoundingClientRect();

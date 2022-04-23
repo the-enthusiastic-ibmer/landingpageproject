@@ -1,0 +1,87 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200&family=Roboto&family=Roboto+Mono:ital,wght@1,200&family=Ubuntu:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200&family=Roboto&family=Roboto+Mono:ital,wght@1,200&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Gothic+A1:wght@200&family=Lora:ital,wght@0,400;1,400;1,600&family=Roboto&family=Roboto+Mono:ital,wght@1,200&display=swap');
+
+/* Specific and Special ID Selectors */
+#text-bold {
+  font-weight: bold;
+}
+
+#text-italic {
+  text-align: center;
+  font-size: 3.5em;
+  font-style: italic;
+}
+
+#text-underline {
+  text-decoration: underline;
+}
+
+#text-bold-italic {
+  font-weight: bold;
+  font-style: italic;
+}
+
+a.button:hover {
+  color:orange;
+  background-color: black;
+  border: 1px solid orange;
+}
+a:link, a:visited {
+  color: black;
+}
+
+/* Class Selectors */
+
+.blogfont {
+  font-family: 'Lora', serif;
+  font-size: 1em;
+}
+
+.blogmain {
+  display: flex;
+  grid-area: main;
+  flex-direction: column;
+  background: #fcf9f2;
+  padding: 1em;
+}
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.button {
+  background-color: orange;
+  border: none;
+  color: black;
+  padding: 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  margin: 3px;
+  cursor: pointer;
+}
+.card {
+  grid-area: 
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 50%;
+  margin: auto;
+  padding: .5em;
+  box-shadow: 0 10px 20px 5px rgba(0,0,0,0.2);
+}
+  
+
+/* Element Selectors */
+
+h1 {
+  text-align: center;
+  font-family: 'Gothic A1', sans-serif;
+}
+ul li {
+  overflow-wrap: break-word;
+}
