@@ -37,7 +37,7 @@ function pageScroll(){
       } else {
         // Remove the 'activeclass' class from all the other elements except the one within view.
         sectionObj[activeSection].element.classList.toggle('activeclass', false);
-        console.log("Off"+activeSection);
+        //console.log("Off"+activeSection);
       }
     }
 }
@@ -68,7 +68,6 @@ for (var i = 0;i<sections.length;i++){
 }
 
 // Create a listner for the scrollball and call the pageScroll function again
-//window.addEventListener('scroll', (event)=>{
 window.addEventListener('scroll', (event)=>{
 
   // Prevent Default event
