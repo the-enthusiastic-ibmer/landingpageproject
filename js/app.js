@@ -5,44 +5,52 @@ const windowHeight = window.innerHeight;
 // Document query selector used to locate the section tags
 const sections = document.querySelectorAll('section');
 
-//  Select the Element Id where the Navbar appends an unordered list
+// Select the Element Id where the Navbar appends an unordered list
 let navUl = document.getElementById('navbar__list');
 
 // Empty Object used to dynamically create Navbar sections and page elements.
 // Populated by a for loop at the Main start of the script.
+/* Example: 
+sectionObj = { 
+  section1:{
+    id: section1
+    element: document.getElementById(section1);
+    }
+  };
+*/
 const sectionObj = {};
 
 
+
 /* * * * * * * * * * * * * * * * * * * * * *
-// Functions go here
+// Functions here
 /* * * * * * * * * * * * * * * * * * * * * */
+
 function pageScroll(){
   let pageElement = event.target.innerText;
-  //document.getElementById(pageElement).scrollIntoView();
-  console.log(sectionObj[pageElement].element,pageElement);
-  
-  sectionObj[pageElement].element.scrollIntoView();
-
-  for (let pagesection in sectionObj){
-    if (pagesection === pageElement){
-      console.log("ON:"+pagesection)
-      document.getElementById(pageElement).classList.add('activeclass');
-      //sectionObj[pageElement].element.classList.toggle('activeclass');
-    } else {
-      document.getElementById(pageElement).classList.remove('activeclass');
-      //sectionObj[pageElement].element.classList.remove('activeclass');
-      console.log("Off:"+pagesection);
+  for (let activeSection in sectionObj){
+      if (activeSection === pageElement){ 
+        // Access the page section element from the sectionObj and using bracket notation and call the scrollIntoView method.
+        sectionObj[activeSection].element.scrollIntoView();
+        // To make the element active, add the 'activeclass' to the same element.      
+      sectionObj[activeSection].element.classList.toggle('activeclass',true);        
+      } else {
+        // Remove the 'activeclass' class from all the other elements except the one within view.
+        sectionObj[activeSection].element.classList.toggle('activeclass', false);
+        console.log("Off"+activeSection);
+      }
     }
-  } 
 }
 
+// The createUlItem function is called from the main
+// Add an event listener for each list item in the  
 function createUlItem(liName){
   // Create a 'li' Element
   let liItem = document.createElement('li');
   liItem.innerHTML = liName;
   
-  //liItem.addEventListener('click', pageScroll);
-  liItem.addEventListener('click', (event)=>{
+  liItem.addEventListener('click', pageScroll);
+  /*liItem.addEventListener('click', (event)=>{
     let pageElement = event.target.innerText;
     for (var activeSection in sectionObj){
       if (activeSection === pageElement){ 
@@ -57,15 +65,19 @@ function createUlItem(liName){
         sectionObj[activeSection].element.classList.remove('activeclass');
       }
     }
-  });
+  });*/
   return liItem;
 }
 
-/* Create sectionObj and Create Navbar*/
+// Main Here
+// Build the Navbar
+// Create sectionObj and Create Navbar*/
 for (var i = 0;i<sections.length;i++){
   secElement = sections[i];
   secId = sections[i].id;
+  // list item for the unordered list
   liItem = secId;
+  // Populate the sectionObj to be referenced later
   sectionObj[secId] = {id:'#'+secId,element:secElement}
   // Create the Navbar - pass each item in the CreateUlItem function
   navUl.appendChild(createUlItem(liItem));
@@ -76,7 +88,7 @@ for (var i = 0;i<sections.length;i++){
   console.log(`${key},${val}`);
 }*/
 
-// Create a Listner for the scrollball
+// Create a listner for the scrollball and call the pageScroll function again
 window.addEventListener('scroll', (event)=>{
   // Prevent Default event
   event.preventDefault()
