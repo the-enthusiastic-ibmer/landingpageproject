@@ -31,7 +31,8 @@ function pageScroll(){
   for (let activeSection in sectionObj){
       if (activeSection === pageElement){ 
         // Access the page section element from the sectionObj and using bracket notation and call the scrollIntoView method.
-        sectionObj[activeSection].element.scrollIntoView();
+        //sectionObj[activeSection].element.scrollIntoView({behavior: "smooth", block: "center", inline: "center"}););
+        sectionObj[activeSection].element.scrollIntoView({behavior: "smooth", block:"center", inline:"center"});
         // To make the element active, add the 'activeclass' to the same element.      
       sectionObj[activeSection].element.classList.toggle('activeclass',true);        
       } else {
@@ -56,7 +57,7 @@ function createUlItem(liName){
 // Main Here
 // Build the Navbar
 // Create sectionObj and Create Navbar*/
-for (var i = 0;i<sections.length;i++){
+for (let i = 0;i<sections.length;i++){
   secElement = sections[i];
   secId = sections[i].id;
   // list item for the unordered list
@@ -73,7 +74,7 @@ window.addEventListener('scroll', (event)=>{
   // Prevent Default event
   //event.preventDefault()
   // Iterate through sectionObj Obects obtaining getBoundingClientRect object
-  for (var scrollSection in sectionObj){
+  for (let scrollSection in sectionObj){
     scrollElementRect = sectionObj[scrollSection].element.getBoundingClientRect();
     if (scrollElementRect.bottom < windowHeight && scrollElementRect.top > 0){
         sectionObj[scrollSection].element.classList.add('activeclass'); 
