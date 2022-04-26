@@ -2,11 +2,13 @@
 /* Variable for Window Inner Height */
 const windowHeight = window.innerHeight;
 
+
 // Document query selector used to locate the section tags
 const sections = document.querySelectorAll('section');
 
 // Select the Element Id where the Navbar appends an unordered list
 let navUl = document.getElementById('navbar__list');
+
 
 // Empty Object used to dynamically create Navbar sections and page elements.
 // Populated by a for loop at the Main start of the script.
@@ -28,16 +30,20 @@ const sectionObj = {};
 
 function pageScroll(){
   let pageElement = event.target.innerText;
+  //let clickedElement = event.target;
+  //clickElement.removeAttribute('class', 'activeclass');
+  //clickElement.setAttribute('class', 'activeclass');
   for (let activeSection in sectionObj){
       if (activeSection === pageElement){ 
         // Access the page section element from the sectionObj and using bracket notation and call the scrollIntoView method.
-        //sectionObj[activeSection].element.scrollIntoView({behavior: "smooth", block: "center", inline: "center"}););
         sectionObj[activeSection].element.scrollIntoView({behavior: "smooth", block:"center", inline:"center"});
         // To make the element active, add the 'activeclass' to the same element.      
-      sectionObj[activeSection].element.classList.toggle('activeclass',true);        
+      sectionObj[activeSection].element.classList.toggle('activeclass',true);
+      document.getElementById(activeSection).setAttribute('class', 'activeclass')  
       } else {
         // Remove the 'activeclass' class from all the other elements except the one within view.
         sectionObj[activeSection].element.classList.toggle('activeclass', false);
+        document.getElementById(activeSection).removeAttribute('class', 'activeclass')  
         //console.log("Off"+activeSection);
       }
     }
@@ -49,6 +55,7 @@ function createUlItem(liName){
   // Create a 'li' Element
   let liItem = document.createElement('li');
   liItem.innerHTML = liName;
+  liItem.id = liName;
   // Add event listerner and scroll to the section
   liItem.addEventListener('click', pageScroll);
   return liItem;
