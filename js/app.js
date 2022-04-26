@@ -2,13 +2,11 @@
 /* Variable for Window Inner Height */
 const windowHeight = window.innerHeight;
 
-
 // Document query selector used to locate the section tags
 const sections = document.querySelectorAll('section');
 
 // Select the Element Id where the Navbar appends an unordered list
 let navUl = document.getElementById('navbar__list');
-
 
 // Empty Object used to dynamically create Navbar sections and page elements.
 // Populated by a for loop at the Main start of the script.
@@ -23,28 +21,34 @@ sectionObj = {
 const sectionObj = {};
 
 
-
 /* * * * * * * * * * * * * * * * * * * * * *
 // Functions here
 /* * * * * * * * * * * * * * * * * * * * * */
 
+// Highlights the nav bar to indicate which section is active when clicked/scrolling.
+function highlightMenu(activeSection, status){
+  if (status){
+    document.getElementById(activeSection).setAttribute('class', 'activeclass')    
+  } else {
+    document.getElementById(activeSection).removeAttribute('class', 'activeclass')
+  }
+}
+
 function pageScroll(){
   let pageElement = event.target.innerText;
-  //let clickedElement = event.target;
-  //clickElement.removeAttribute('class', 'activeclass');
-  //clickElement.setAttribute('class', 'activeclass');
   for (let activeSection in sectionObj){
       if (activeSection === pageElement){ 
         // Access the page section element from the sectionObj and using bracket notation and call the scrollIntoView method.
         sectionObj[activeSection].element.scrollIntoView({behavior: "smooth", block:"center", inline:"center"});
-        // To make the element active, add the 'activeclass' to the same element.      
+      // To make the element active, add the 'activeclass' to the same element.
       sectionObj[activeSection].element.classList.toggle('activeclass',true);
-      document.getElementById(activeSection).setAttribute('class', 'activeclass')  
+      // Makes the menu bar active and adds the 'activeclass' to the navbar that was clicked
+      highlightMenu(activeSection, true)
       } else {
         // Remove the 'activeclass' class from all the other elements except the one within view.
         sectionObj[activeSection].element.classList.toggle('activeclass', false);
-        document.getElementById(activeSection).removeAttribute('class', 'activeclass')  
-        //console.log("Off"+activeSection);
+        // Remove the 'activeclass' class from the nav bar when it isn't active/clicked.
+        highlightMenu(activeSection, false)
       }
     }
 }
@@ -84,9 +88,14 @@ window.addEventListener('scroll', (event)=>{
   for (let scrollSection in sectionObj){
     scrollElementRect = sectionObj[scrollSection].element.getBoundingClientRect();
     if (scrollElementRect.bottom < windowHeight && scrollElementRect.top > 0){
-        sectionObj[scrollSection].element.classList.add('activeclass'); 
+        sectionObj[scrollSection].element.classList.add('activeclass');
+        highlightMenu(scrollSection, true);
       } else {
-        sectionObj[scrollSection].element.classList.remove('activeclass'); 
-      } /* Remove the class 'activeclass' from the element */
+        sectionObj[scrollSection].element.classList.remove('activeclass');
+        // Remove the class 'activeclass' from the element */
+        highlightMenu(scrollSection, false);
+        // Highlights the menubar when scrolled 
+      } 
+    
     }
 });
